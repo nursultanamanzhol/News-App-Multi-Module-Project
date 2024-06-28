@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -33,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":common:common_utils"))
+    implementation(project(":news:news_domain"))
 
     implementation(Deps.core)
     implementation(Deps.appCompat)
@@ -41,4 +45,12 @@ dependencies {
     testImplementation(TestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.espresso)
+
+    implementation(DaggerHilt.hilt)
+    kapt(DaggerHilt.hiltCompiler)
+    kapt(DaggerHilt.hiltAndroidCompiler)
+
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.okHttp)
+    implementation(Retrofit.gsonConvertor)
 }

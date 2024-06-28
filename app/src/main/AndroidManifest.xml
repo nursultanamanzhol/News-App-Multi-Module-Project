@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="kz.jetpack.news_app_multi_module_project"
     >
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".BaseApplication"

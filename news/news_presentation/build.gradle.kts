@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,10 +34,15 @@ android {
     kotlinOptions {
         jvmTarget = "18"
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
     implementation(project(":common:common_utils"))
+    implementation(project(":news:news_domain"))
 
     implementation(Deps.core)
     implementation(Deps.appCompat)
@@ -45,4 +54,19 @@ dependencies {
     testImplementation(TestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.junit)
     androidTestImplementation(AndroidTestImplementation.espresso)
+
+    implementation(DaggerHilt.hilt)
+    kapt(DaggerHilt.hiltCompiler)
+    kapt(DaggerHilt.hiltAndroidCompiler)
+
+    implementation(Coroutines.coroutineCore)
+    implementation(Coroutines.coroutineAndroid)
+    implementation(CoroutinesLifecycleScope.lifeCycleRuntime)
+    implementation(CoroutinesLifecycleScope.lifecycleViewModel)
+
+    implementation(Glide.glide)
+    kapt(Glide.annotationProcessor)
+
+    implementation(ViewModelDelegate.viewModelDeligate)
+    implementation(CircularProgressBar.swipeRefresh)
 }

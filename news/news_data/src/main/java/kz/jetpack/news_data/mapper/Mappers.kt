@@ -6,7 +6,7 @@ import kz.jetpack.news_domain.model.Article
 fun ArticleDTO.toDomainArticle(): Article {
     return Article(
         author = this.author,
-        content = this.content,
+        content = this.content ?: "Content not available",
         description = this.description,
         title = this.title,
         urlToImage = this.urlToImage
